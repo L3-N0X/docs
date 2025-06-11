@@ -35,4 +35,3 @@ editPost:
     Text: "Suggest Changes" # edit text
     appendFilePath: true # to append file path to Edit link
 ---
-This is my first post. I am writing some text here to fill the content of the post. This is a sample text to demonstrate how the content will look like in the final rendered page.
