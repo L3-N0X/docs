@@ -10,7 +10,13 @@ buildFuture: false
 buildExpired: false
 enableEmoji: true
 
-mainsections: ["posts", "minecraft"]
+mainsections: ["posts"]
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
 
 minify:
   disableXML: true
@@ -99,7 +105,7 @@ params:
     threshold: 0.4
     minMatchCharLength: 0
     limit: 10 # refer: https://www.fusejs.io/api/methods.html#search
-    keys: ["title", "permalink", "summary", "content"]
+    keys: ["title", "description", "summary", "tags", "content"]
 
 menu:
   main:

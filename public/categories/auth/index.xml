@@ -16,5 +16,19 @@
       <guid>https://docs.goett.top/posts/2fa/</guid>
       <description>Eine Anleitung zur Aktivierung der 2-Faktor-Authentifizierung (2FA) für deinen Account.</description>
     </item>
+    <item>
+      <title>Passwort und Accountdaten ändern</title>
+      <link>https://docs.goett.top/posts/password/</link>
+      <pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/password/</guid>
+      <description>So änderst du dein Passwort für deinen Account.</description>
+    </item>
+    <item>
+      <title>Vaultwarden einrichten</title>
+      <link>https://docs.goett.top/posts/vaultwarden/</link>
+      <pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/vaultwarden/</guid>
+      <description>So richtest du Vaultwarden ein, um deine Passwörter sicher zu verwalten.</description>
+    </item>
   </channel>
 </rss>

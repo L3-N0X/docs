@@ -24,11 +24,18 @@
       <description>Eine kleine Anleitung, wie man sich bei Immich anmeldet und Bilder hochlädt.</description>
     </item>
     <item>
-      <title>Minecraft Server Guide</title>
-      <link>https://docs.goett.top/posts/minecraft/minecraft/</link>
+      <title>Passwort und Accountdaten ändern</title>
+      <link>https://docs.goett.top/posts/password/</link>
       <pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>https://docs.goett.top/posts/minecraft/minecraft/</guid>
-      <description>Set up a Minecraft server with ease using this comprehensive guide.</description>
+      <guid>https://docs.goett.top/posts/password/</guid>
+      <description>So änderst du dein Passwort für deinen Account.</description>
+    </item>
+    <item>
+      <title>Vaultwarden einrichten</title>
+      <link>https://docs.goett.top/posts/vaultwarden/</link>
+      <pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/vaultwarden/</guid>
+      <description>So richtest du Vaultwarden ein, um deine Passwörter sicher zu verwalten.</description>
     </item>
   </channel>
 </rss>
