@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Passwort on Dokumentation</title>
+    <link>https://docs.goett.top/tags/passwort/</link>
+    <description>Recent content in Passwort on Dokumentation</description>
+    <generator>Hugo -- 0.147.8</generator>
+    <language>en</language>
+    <copyright>2023 Leon Gött</copyright>
+    <lastBuildDate>Wed, 11 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://docs.goett.top/tags/passwort/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beginner-Guide</title>
+      <link>https://docs.goett.top/posts/beginner/</link>
+      <pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/beginner/</guid>
+      <description>So startest du mit deinem Account und den wichtigsten Funktionen.</description>
+    </item>
+    <item>
+      <title>Passwort und Accountdaten ändern</title>
+      <link>https://docs.goett.top/posts/password/</link>
+      <pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/password/</guid>
+      <description>So änderst du dein Passwort für deinen Account.</description>
+    </item>
+    <item>
+      <title>Vaultwarden einrichten</title>
+      <link>https://docs.goett.top/posts/vaultwarden/</link>
+      <pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/vaultwarden/</guid>
+      <description>So richtest du Vaultwarden ein, um deine Passwörter sicher zu verwalten.</description>
+    </item>
+  </channel>
+</rss>

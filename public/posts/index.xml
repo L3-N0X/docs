@@ -7,14 +7,35 @@
     <generator>Hugo -- 0.147.8</generator>
     <language>en</language>
     <copyright>2023 Leon Gött</copyright>
-    <lastBuildDate>Wed, 11 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 11 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://docs.goett.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nele Hotkeys</title>
+      <link>https://docs.goett.top/posts/nele-hotkeys/</link>
+      <pubDate>Thu, 11 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/nele-hotkeys/</guid>
+      <description>Eine Liste der Minecraft Hotkeys von Ju5tNele</description>
+    </item>
+    <item>
+      <title>Nützliche Tools und Links</title>
+      <link>https://docs.goett.top/posts/tools/</link>
+      <pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/tools/</guid>
+      <description>Hier findest du eine Sammlung von nützlichen Tools und Links</description>
+    </item>
     <item>
       <title>2FA Anleitung</title>
       <link>https://docs.goett.top/posts/2fa/</link>
       <pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate>
       <guid>https://docs.goett.top/posts/2fa/</guid>
       <description>Eine Anleitung zur Aktivierung der 2-Faktor-Authentifizierung (2FA) für deinen Account.</description>
+    </item>
+    <item>
+      <title>Beginner-Guide</title>
+      <link>https://docs.goett.top/posts/beginner/</link>
+      <pubDate>Wed, 11 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/beginner/</guid>
+      <description>So startest du mit deinem Account und den wichtigsten Funktionen.</description>
     </item>
     <item>
       <title>Immich Anleitung</title>

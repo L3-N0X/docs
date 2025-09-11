@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://docs.goett.top/categories/</loc>
+    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/</loc>
+    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/tags/hotkeys/</loc>
+    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/tags/ju5tnele/</loc>
+    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/categories/minecraft/</loc>
+    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/tags/minecraft/</loc>
+    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/posts/nele-hotkeys/</loc>
+    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/posts/</loc>
+    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/tags/</loc>
+    <lastmod>2025-09-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/tags/downloads/</loc>
+    <lastmod>2025-06-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/tags/links/</loc>
+    <lastmod>2025-06-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/posts/tools/</loc>
+    <lastmod>2025-06-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/categories/tools/</loc>
+    <lastmod>2025-06-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://docs.goett.top/tags/tools/</loc>
+    <lastmod>2025-06-15T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://docs.goett.top/tags/2fa/</loc>
     <lastmod>2025-06-11T00:00:00+00:00</lastmod>
   </url><url>
@@ -20,13 +62,10 @@
     <loc>https://docs.goett.top/tags/auth/</loc>
     <lastmod>2025-06-11T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://docs.goett.top/posts/beginner/</loc>
+    <lastmod>2025-06-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://docs.goett.top/tags/bilder/</loc>
-    <lastmod>2025-06-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://docs.goett.top/categories/</loc>
-    <lastmod>2025-06-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://docs.goett.top/</loc>
     <lastmod>2025-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://docs.goett.top/categories/immich/</loc>
@@ -42,12 +81,6 @@
     <lastmod>2025-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://docs.goett.top/posts/password/</loc>
-    <lastmod>2025-06-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://docs.goett.top/posts/</loc>
-    <lastmod>2025-06-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://docs.goett.top/tags/</loc>
     <lastmod>2025-06-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://docs.goett.top/posts/vaultwarden/</loc>

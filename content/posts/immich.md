@@ -15,7 +15,7 @@ Immich ist eine Open-Source-Lösung für die Verwaltung und Speicherung von Foto
 
 ## Installation und Login (Immich App)
 
-### Schritt 1: Account verfollständigen
+### Schritt 1: Account vervollständigen
 
 Falls du deinen Account noch nicht vervollständigt hast, gehe auf [auth.goett.top](https://auth.goett.top) um die 2-Faktor-Authentifizierung zu aktivieren und deinen Account zu vervollständigen. Dies ist wichtig, um die Sicherheit deines Kontos zu gewährleisten.
 
