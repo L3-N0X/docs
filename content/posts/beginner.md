@@ -15,7 +15,6 @@ Du hast neue Zugangsdaten für deinen Account erhalten und möchtest nun wissen,
 ## Schritt 1: Passwort ändern
 
 Du solltest dein Passwort ändern, um sicherzustellen, dass nur du Zugriff auf deinen Account hast.
-Die Anleitung dazu findest du hier: [Passwort ändern](./password) Anleitung
 
 ## Schritt 2: Vaultwarden einrichten
 
@@ -36,8 +35,6 @@ Die Anleitung dazu findest du hier: [Immich einrichten](./immich) Anleitung
 
 Nachdem du die grundlegenden Sicherheitsmaßnahmen getroffen hast, kannst du weitere Dienste einrichten. Hier sind einige nützliche Links:
 
-- [Startpage](https://start.goett.top): Deine persönliche Startseite mit Links zu allen Diensten. Login mit Authelia. Am besten favorisieren!
-- [Nextcloud](https://nextcloud.goett.top): Deine private Cloud für Dateien, Kalender und Kontakte. Login mit Authelia.
-- [Mealie](https://mealie.goett.top): Dein privater Rezept-Manager. Login mit Authelia.
-- [ChatGÖT](https://chat.goett.top): Dein privater AI-Service für schnelle Antworten und Unterstützung. Login mit Authelia.
-- [Home Assistant](https://home.goett.top): Dein privates Smart Home System. Login mit persönlichen Zugangsdaten.
+- [Startpage](https://start.goett.top): Deine persönliche Startseite mit Links zu allen Diensten. Login mit Authentik. Am besten favorisieren!
+- [Nextcloud](https://cloud.goett.top): Deine private Cloud für Dateien, Kalender und Kontakte. Login mit Authentik.
+- [Mealie](https://mealie.goett.top): Dein privater Rezept-Manager. Login mit Authentik.
