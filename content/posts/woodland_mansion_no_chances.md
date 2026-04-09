@@ -11,7 +11,7 @@ TocOpen: false
 math: true
 ---
 
-Dieser Artikel erklärt die Generierung von Woodland Mansions in Minecraft. Dabei wird zuerst der Algorithmus zur Generierung der Hallways (Gänge) beschrieben und danach werden ([einzelne Räume](#liste-der-raumtypen-und-deren-platzierung)) genauer analysiert, um genaue Wahrscheinlichkeiten für das Auftreten verschiedener Raumtypen zu ermitteln.
+Dieser Artikel erklärt die Generierung von Woodland Mansions in Minecraft. Dabei wird zuerst der Algorithmus zur Generierung der Hallways (Gänge) beschrieben und danach werden ([einzelne Räume](#liste-der-raumtypen-und-deren-platzierung)) genauer analysiert.
 
 > [!MEMO] Zusammenfassung
 > Die Generierung einer Woodland Mansion wird primär durch einen „Snake-Algorithmus“ bestimmt, der zuerst die Hallways (Gänge) festlegt. Da alle Räume erst nachträglich in die verbleibenden Lücken gesetzt werden und eine Tür zum Gang benötigen, entstehen Secret Rooms immer dann, wenn ein Raum keinen Kontakt zu einem Hallway hat. Bestimmte Hallway-Muster bedingen dabei die Entstehung dieser geheimen Räume massiv. Im 3. Stock treten Secret Rooms deutlich häufiger auf, da der Hallway dort mit nur einem Startpunkt und maximal 8 Abschnitten wesentlich kürzer ist als in den unteren Etagen, wodurch viel mehr „isolierte“ Zellen ohne Gang-Anschluss entstehen können.
@@ -71,7 +71,7 @@ Bei der Generierung der Hallways werden Positionen gespeichert, an denen Räume 
 > 4. Zuerst wird geschaut, ob ein **2x2 Raum** generiert werden kann, erst danach **1x2 Räume**. **1x1 Räume** werden nur geplaced, wenn kein größerer Raum an dieser Stelle generiert werden kann. (Das geschieht pro Stockwerk, die Aufteilung der Räume auf den Stockwerken ist also nicht die gleiche)
 > 5. Anschließend wird eine der Raum-Zellen zufällig ausgewählt, und geprüft, ob diese eine Türe sein kann. Wenn diese Zelle jedoch nicht neben einem Gang liegt, wird eine andere Zelle gewählt und erneut getestet, bis eine Zelle gefunden wird, die neben einem Gang liegt und dadurch zur Türe wird.
 > 6. Da der **Hallway-Algorithmus** nicht garantiert, dass alle Räume neben einem Gang liegen, gibt es die Möglichkeit, dass manche Räume keine Tür haben. Diese Räume sind dann die sogenannten **"Secret-Räume"**. (Das genaue Vorgehen wird im Abschnitt [Details zu den Secret-Räumen](#details-zu-den-secret-räumen) erklärt.)
-> 7. Bei den restlichen **1x2 Räumen** wird anschließend noch bestimmt, **welche Form der Eingang hat**, es gibt Räume mit einem Eingang auf der **kurzen Seite** (`b` & `d` Raum-Varianten) und Räume mit einem Eingang auf der **langen Seite** (`a` & `c` Raum-Varianten). (Dies hat einen Einfluss auf die Wahrscheinlichkeit, wie in der [Liste der Raumtypen](#liste-der-raumtypen-und-deren-platzierung) zu sehen ist). Die `a` & `b` Raum-Varianten können **nur im Erdgeschoss** generiert werden, die `c` & `d` Raum-Varianten **im 2. und 3. Stockwerk** (ausgenommen `stairs`-Räume, diese können nur im 2. Stockwerk generiert werden).
+> 7. Bei den restlichen **1x2 Räumen** wird anschließend noch bestimmt, **welche Form der Eingang hat**, es gibt Räume mit einem Eingang auf der **kurzen Seite** (`b` & `d` Raum-Varianten) und Räume mit einem Eingang auf der **langen Seite** (`a` & `c` Raum-Varianten). Die `a` & `b` Raum-Varianten können **nur im Erdgeschoss** generiert werden, die `c` & `d` Raum-Varianten **im 2. und 3. Stockwerk** (ausgenommen `stairs`-Räume, diese können nur im 2. Stockwerk generiert werden).
 > 8. Bei den 1x1 und 2x2 Räumen gibt es ebenfalls `a` & `b` Raum-Varianten, diese unterscheiden sich jedoch **nicht** bei der Türen-Platzierung. Die `a` Varianten können **nur im Erdgeschoss** generiert werden, die `b` Varianten **im 2. und 3. Stockwerk**.
 > 9. Nur im 2. Stockwerk, Treppen: Es wird nun nach einem Raum gesucht, der **1x2 groß ist und eine Türe** hat. Es kann entweder ein `curved` (`c` Raum-Variante) oder `straight` (`d` Raum-Variante) Staircase (Treppe) generiert werden. Diese Treppe führt dann in das 3. Stockwerk. Wird kein passender Raum für eine Treppe gefunden, tritt ein **seltener Fall** ein: Die Woodland Mansion wird **komplett ohne 3. Stockwerk** generiert.
 > 10. Nachdem alle Räume bestimmt wurden, werden diese festgelegt für die Generierung und die anschließende Platzierung der Struktur-Teile und Räume.
@@ -80,88 +80,88 @@ Es gibt Woodland Mansions, die **weniger Zellen in der Grundfläche** haben als 
 
 ## Liste der Raumtypen und deren Platzierung
 
-Die folgende Tabelle zeigt **alle Raumtypen**, die in Woodland Mansions generiert werden können, inklusive der Wahrscheinlichkeit, mit der sie generiert werden. Diese Wahrscheinlichkeiten wurden durch die Analyse von $100.000$ generierten Woodland Mansions ermittelt und geben an, wie wahrscheinlich es ist, dass eine Mansion den jeweiligen Raumtyp enthält. Zudem sind die **Stockwerke** angegeben, in denen die Räume generiert werden können sowie die Struktur-Namen, die in den Minecraft-Struktur-Dateien verwendet werden.
+Die folgende Tabelle zeigt **alle Raumtypen**, die in Woodland Mansions generiert werden können. Zudem sind die **Stockwerke** angegeben, in denen die Räume generiert werden können sowie die Struktur-Namen, die in den Minecraft-Struktur-Dateien verwendet werden.
 
 ### 1x1 Räume
 
-| Struktur + Link | Raum-Name | Stockwerk | Wahrscheinlichkeit |
-| --- | --- | --- | --- |
-| [`1x1_a1`](#1x1_a1---flower-room) | Flower Room | 1. Stock | $56.43\\%$ |
-| [`1x1_a2`](#1x1_a2---pumpkin-ring-room) | Pumpkin Room | 1. Stock | $56.08\\%$ |
-| [`1x1_a3`](#1x1_a3---office) | Office | 1. Stock | $56.11\\%$ |
-| [`1x1_a4`](#1x1_a4---checkerboard-room) | Checkerboard Room | 1. Stock | $55.97\\%$ |
-| [`1x1_a5`](#1x1_a5---white-tulip-sanctuary) | White Tulip Sanctuary | 1. Stock | $56.51\\%$ |
-| --- | --- | --- | --- |
-| [`1x1_b1`](#1x1_b1---birch-arch-room) | Birch Arch Room | 2. und 3. Stock | $65.61\\%$ |
-| [`1x1_b2`](#1x1_b2---small-dining-room) | Small Dining Room | 2. und 3. Stock | $65.41\\%$ |
-| [`1x1_b3`](#1x1_b3---single-bed-bedroom) | Single Bed Bedroom | 2. und 3. Stock | $65.65\\%$ |
-| [`1x1_b4`](#1x1_b4---small-library) | Small Library | 2. und 3. Stock | $65.36\\%$ |
-| [`1x1_b5`](#1x1_b5---allium-room) | Allium Room | 2. und 3. Stock | $65.68\\%$ |
+| Struktur + Link | Raum-Name | Stockwerk |
+| --- | --- | --- |
+| [`1x1_a1`](#1x1_a1---flower-room) | Flower Room | 1. Stock |
+| [`1x1_a2`](#1x1_a2---pumpkin-ring-room) | Pumpkin Room | 1. Stock |
+| [`1x1_a3`](#1x1_a3---office) | Office | 1. Stock |
+| [`1x1_a4`](#1x1_a4---checkerboard-room) | Checkerboard Room | 1. Stock |
+| [`1x1_a5`](#1x1_a5---white-tulip-sanctuary) | White Tulip Sanctuary | 1. Stock |
+| --- | --- | --- |
+| [`1x1_b1`](#1x1_b1---birch-arch-room) | Birch Arch Room | 2. und 3. Stock |
+| [`1x1_b2`](#1x1_b2---small-dining-room) | Small Dining Room | 2. und 3. Stock |
+| [`1x1_b3`](#1x1_b3---single-bed-bedroom) | Single Bed Bedroom | 2. und 3. Stock |
+| [`1x1_b4`](#1x1_b4---small-library) | Small Library | 2. und 3. Stock |
+| [`1x1_b5`](#1x1_b5---allium-room) | Allium Room | 2. und 3. Stock |
 
 ### 1x2 Räume
 
-| Struktur + Link | Raum-Name | Stockwerk | Wahrscheinlichkeit |
-| --- | --- | --- | --- |
-| [`1x2_a1`](#1x2_a1---gray-banner-room) | Gray Banner Room | 1. Stock | $39.62\\%$ |
-| [`1x2_a2`](#1x2_a2---wheat-farm) | Wheat Farm | 1. Stock | $39.47\\%$ |
-| [`1x2_a3`](#1x2_a3---forge-room) | Forge Room (Anvil Room) | 1. Stock | $39.68\\%$ |
-| [`1x2_a4`](#1x2_a4---sapling-farm) | Sapling Farm | 1. Stock | $39.84\\%$ |
-| [`1x2_a5`](#1x2_a5---wool-room) | Wool Room | 1. Stock | $39.27\\%$ |
-| [`1x2_a6`](#1x2_a6---tree-chopping-room) | Tree-Chopping Room | 1. Stock | $39.50\\%$ |
-| [`1x2_a7`](#1x2_a7---mushroom-farm) | Mushroom Farm | 1. Stock | $39.40\\%$ |
-| [`1x2_a8`](#1x2_a8---dual-staged-farm) | Dual-staged Farm | 1. Stock | $39.72\\%$ |
-| [`1x2_a9`](#1x2_a9---small-storage-room) | Small Storage Room | 1. Stock | $39.36\\%$ |
-| --- | --- | --- | --- |
-| [`1x2_b1`](#1x2_b1---redstone-jail) | Redstone Jail | 1. Stock | $26.87\\%$ |
-| [`1x2_b2`](#1x2_b2---small-jail) | Small Jail | 1. Stock | $26.78\\%$ |
-| [`1x2_b3`](#1x2_b3---wood-arch-hallway) | Wood Arch Hallway | 1. Stock | $26.77\\%$ |
-| [`1x2_b4`](#1x2_b4---winding-stairway-room) | Winding Stairway Room | 1. Stock | $26.61\\%$ |
-| [`1x2_b5`](#1x2_b5---illager-head-room) | Illager Head Room | 1. Stock | $26.66\\%$ |
-| --- | --- | --- | --- |
-| [`1x2_c1`](#1x2_c1---medium-dining-room) | Medium Dining Room | 2. und 3. Stock | $76.34\\%$ |
-| [`1x2_c2`](#1x2_c2---double-bed-bedroom) | Double Bed Bedroom | 2. und 3. Stock | $76.33\\%$ |
-| [`1x2_c3`](#1x2_c3---triple-bed-bedroom) | Triple Bed Bedroom | 2. und 3. Stock | $76.36\\%$ |
-| [`1x2_c4`](#1x2_c4---medium-library) | Medium Library | 2. und 3. Stock | $76.24\\%$ |
-| --- | --- | --- | --- |
-| [`1x2_c_stairs`](#1x2_c_stairs---curved-staircase) | Curved Staircase | 2. Stock | $73.52\\%$ |
-| --- | --- | --- | --- |
-| [`1x2_d1`](#1x2_d1---master-bedroom) | Master Bedroom | 2. und 3. Stock | $41.49\\%$ |
-| [`1x2_d2`](#1x2_d2---bedroom-with-loft) | Bedroom with Loft | 2. und 3. Stock | $41.40\\%$ |
-| [`1x2_d3`](#1x2_d3---ritual-room) | Ritual Room | 2. und 3. Stock | $41.57\\%$ |
-| [`1x2_d4`](#1x2_d4---cat-statue-room) | Cat Statue Room | 2. und 3. Stock | $41.48\\%$ |
-| [`1x2_d5`](#1x2_d5---chicken-statue-room) | Chicken Statue Room | 2. und 3. Stock | $41.34\\%$ |
-| --- | --- | --- | --- |
-| [`1x2_d_stairs`](#1x2_d_stairs---straight-staircase) | Straight Staircase | 2. Stock | $26.48\\%$ |
+| Struktur + Link | Raum-Name | Stockwerk |
+| --- | --- | --- |
+| [`1x2_a1`](#1x2_a1---gray-banner-room) | Gray Banner Room | 1. Stock |
+| [`1x2_a2`](#1x2_a2---wheat-farm) | Wheat Farm | 1. Stock |
+| [`1x2_a3`](#1x2_a3---forge-room) | Forge Room (Anvil Room) | 1. Stock |
+| [`1x2_a4`](#1x2_a4---sapling-farm) | Sapling Farm | 1. Stock |
+| [`1x2_a5`](#1x2_a5---wool-room) | Wool Room | 1. Stock |
+| [`1x2_a6`](#1x2_a6---tree-chopping-room) | Tree-Chopping Room | 1. Stock |
+| [`1x2_a7`](#1x2_a7---mushroom-farm) | Mushroom Farm | 1. Stock |
+| [`1x2_a8`](#1x2_a8---dual-staged-farm) | Dual-staged Farm | 1. Stock |
+| [`1x2_a9`](#1x2_a9---small-storage-room) | Small Storage Room | 1. Stock |
+| --- | --- | --- |
+| [`1x2_b1`](#1x2_b1---redstone-jail) | Redstone Jail | 1. Stock |
+| [`1x2_b2`](#1x2_b2---small-jail) | Small Jail | 1. Stock |
+| [`1x2_b3`](#1x2_b3---wood-arch-hallway) | Wood Arch Hallway | 1. Stock |
+| [`1x2_b4`](#1x2_b4---winding-stairway-room) | Winding Stairway Room | 1. Stock |
+| [`1x2_b5`](#1x2_b5---illager-head-room) | Illager Head Room | 1. Stock |
+| --- | --- | --- |
+| [`1x2_c1`](#1x2_c1---medium-dining-room) | Medium Dining Room | 2. und 3. Stock |
+| [`1x2_c2`](#1x2_c2---double-bed-bedroom) | Double Bed Bedroom | 2. und 3. Stock |
+| [`1x2_c3`](#1x2_c3---triple-bed-bedroom) | Triple Bed Bedroom | 2. und 3. Stock |
+| [`1x2_c4`](#1x2_c4---medium-library) | Medium Library | 2. und 3. Stock |
+| --- | --- | --- |
+| [`1x2_c_stairs`](#1x2_c_stairs---curved-staircase) | Curved Staircase | 2. Stock |
+| --- | --- | --- |
+| [`1x2_d1`](#1x2_d1---master-bedroom) | Master Bedroom | 2. und 3. Stock |
+| [`1x2_d2`](#1x2_d2---bedroom-with-loft) | Bedroom with Loft | 2. und 3. Stock |
+| [`1x2_d3`](#1x2_d3---ritual-room) | Ritual Room | 2. und 3. Stock |
+| [`1x2_d4`](#1x2_d4---cat-statue-room) | Cat Statue Room | 2. und 3. Stock |
+| [`1x2_d5`](#1x2_d5---chicken-statue-room) | Chicken Statue Room | 2. und 3. Stock |
+| --- | --- | --- |
+| [`1x2_d_stairs`](#1x2_d_stairs---straight-staircase) | Straight Staircase | 2. Stock |
 
 ### 2x2 Räume
 
-| Struktur + Link | Raum-Name | Stockwerk | Wahrscheinlichkeit |
-| --- | --- | --- | --- |
-| [`2x2_a1`](#2x2_a1---large-jail) | Large Jail | 1. Stock | $57.48\\%$ |
-| [`2x2_a2`](#2x2_a2---large-storage-room) | Large Storage Room | 1. Stock | $57.43\\%$ |
-| [`2x2_a3`](#2x2_a3---illager-statue-room) | Illager Statue Room | 1. Stock | $57.50\\%$ |
-| [`2x2_a4`](#2x2_a4---nature-room) | Nature Room | 1. Stock | $57.43\\%$ |
-| --- | --- | --- | --- |
-| [`2x2_b1`](#2x2_b1---large-dining-room) | Large Dining Room | 2. und 3. Stock | $62.84\\%$ |
-| [`2x2_b2`](#2x2_b2---conference-room) | Conference Room | 2. und 3. Stock | $62.54\\%$ |
-| [`2x2_b3`](#2x2_b3---large-library) | Large Library | 2. und 3. Stock | $62.72\\%$ |
-| [`2x2_b4`](#2x2_b4---map-room) | Map Room | 2. und 3. Stock | $62.40\\%$ |
-| [`2x2_b5`](#2x2_b5---arena-room) | Arena Room | 2. und 3. Stock | $62.61\\%$ |
+| Struktur + Link | Raum-Name | Stockwerk |
+| --- | --- | --- |
+| [`2x2_a1`](#2x2_a1---large-jail) | Large Jail | 1. Stock |
+| [`2x2_a2`](#2x2_a2---large-storage-room) | Large Storage Room | 1. Stock |
+| [`2x2_a3`](#2x2_a3---illager-statue-room) | Illager Statue Room | 1. Stock |
+| [`2x2_a4`](#2x2_a4---nature-room) | Nature Room | 1. Stock |
+| --- | --- | --- |
+| [`2x2_b1`](#2x2_b1---large-dining-room) | Large Dining Room | 2. und 3. Stock |
+| [`2x2_b2`](#2x2_b2---conference-room) | Conference Room | 2. und 3. Stock |
+| [`2x2_b3`](#2x2_b3---large-library) | Large Library | 2. und 3. Stock |
+| [`2x2_b4`](#2x2_b4---map-room) | Map Room | 2. und 3. Stock |
+| [`2x2_b5`](#2x2_b5---arena-room) | Arena Room | 2. und 3. Stock |
 
 ### Secret-Räume
 
-| Struktur + Link | Raum-Name | Stockwerk | Wahrscheinlichkeit |
-| --- | --- | --- | --- |
-| [`1x1_as1`](#1x1_as1---x-room-secret-room) | X Room | 1., 2. und 3. Stock | $14.54\\%$ |
-| [`1x1_as2`](#1x1_as2---spider-room-secret-room) | Spider Room | 1., 2. und 3. Stock | $14.65\\%$ |
-| [`1x1_as3`](#1x1_as3---obsidian-room-secret-room) | Obsidian Room | 1., 2. und 3. Stock | $14.48\\%$ |
-| [`1x1_as4`](#1x1_as4---birch-pillar-room-secret-room) | Birch Pillar Room | 1., 2. und 3. Stock | $14.63\\%$ |
-| --- | --- | --- | --- |
-| [`1x2_s1`](#1x2_s1---clean-chest-room-secret-room) | Clean Chest Room | 1. Stock | $6.24\\%$ |
-| [`1x2_s2`](#1x2_s2---fake-end-portal-room-secret-room) | Fake End Portal Room | 1. Stock | $6.29\\%$ |
-| [`1x2_se1`](#1x2_se1---attic-room-secret-room) | Attic Room | 2. und 3. Stock | $35.08\\%$ |
-| --- | --- | --- | --- |
-| [`2x2_s1`](#2x2_s1---lava-room-secret-room) | Lava Room | 1., 2. und 3. Stock | $3.76\\%$ |
+| Struktur + Link | Raum-Name | Stockwerk |
+| --- | --- | --- |
+| [`1x1_as1`](#1x1_as1---x-room-secret-room) | X Room | 1., 2. und 3. Stock |
+| [`1x1_as2`](#1x1_as2---spider-room-secret-room) | Spider Room | 1., 2. und 3. Stock |
+| [`1x1_as3`](#1x1_as3---obsidian-room-secret-room) | Obsidian Room | 1., 2. und 3. Stock |
+| [`1x1_as4`](#1x1_as4---birch-pillar-room-secret-room) | Birch Pillar Room | 1., 2. und 3. Stock |
+| --- | --- | --- |
+| [`1x2_s1`](#1x2_s1---clean-chest-room-secret-room) | Clean Chest Room | 1. Stock |
+| [`1x2_s2`](#1x2_s2---fake-end-portal-room-secret-room) | Fake End Portal Room | 1. Stock |
+| [`1x2_se1`](#1x2_se1---attic-room-secret-room) | Attic Room | 2. und 3. Stock |
+| --- | --- | --- |
+| [`2x2_s1`](#2x2_s1---lava-room-secret-room) | Lava Room | 1., 2. und 3. Stock |
 
 ## Details zu den Secret-Räumen
 
@@ -173,7 +173,7 @@ Für den 3. Stock gibt es **keine großen Ausreißer** in den Hallway-Formen, di
 
 ### 1x1 Secret-Räume
 
-Diese Secret-Räume haben eine **Grundfläche** von nur 1 Zelle, dadurch ist es relativ wahrscheinlich, dass sie generieren können, da es nur eine Zelle gibt, die nicht neben einem Gang liegen darf. Da es insgesamt **vier verschiedene** 1x1 Secret-Räume gibt, entscheidet das Spiel per **Zufall** (wie bei einem 4-seitigen Würfel), welcher davon entsteht. Dementsprechend liegt die **Wahrscheinlichkeit für einen spezifischen 1x1 Raum bei nur ca. $14,5\\%$.**
+Diese Secret-Räume haben eine **Grundfläche** von nur 1 Zelle, dadurch ist es relativ wahrscheinlich, dass sie generieren können, da es nur eine Zelle gibt, die nicht neben einem Gang liegen darf. Da es insgesamt **vier verschiedene** 1x1 Secret-Räume gibt, entscheidet das Spiel per **Zufall** (wie bei einem 4-seitigen Würfel), welcher davon entsteht.
 
 Durch die spezielle Generierung in **Stockwerk 3** generieren dort auch generell **mehr** 1x1 Secret-Räume, während es **im 1. und 2. Stock deutlich weniger** sind. In den unteren Stockwerken gibt es einige Positionen, die häufiger 1x1 Secret-Räume generieren als andere, da es hier bestimmte Hallway-Formen gibt, die es erst ermöglichen, dass 1x1 Secret-Räume generieren können, von denen manche häufiger sind als andere. Dadurch sind die 1x1 Secret-Räume hier auch eher im Westen, da dort tendenziell weniger Gänge generieren.
 
@@ -183,13 +183,13 @@ Durch die spezielle Generierung in **Stockwerk 3** generieren dort auch generell
 
 Hier gibt es jedoch auch **Unterschiede zwischen den Stockwerken**:
 
-Der `Attic Room` kann sowohl im 2. als auch im 3. Stock generieren und ist im 3. Stock häufiger, da es hier mehr Platz für Secret-Räume gibt. Der `Attic Room` ist der häufigste 1x2 Secret-Raum mit ca. $35\\%$ Wahrscheinlichkeit ($11.75\\%$ auf Stockwerk 2, $26.40\\%$ auf Stockwerk 3), da er der einzige 1x2 Secret-Raum ist, der im 2. und 3. Stock generieren kann.
+Der `Attic Room` kann sowohl im 2. als auch im 3. Stock generieren und ist im 3. Stock häufiger, da es hier mehr Platz für Secret-Räume gibt. Er ist der einzige 1x2 Secret-Raum, der im 2. und 3. Stock generieren kann. Damit ist dieser der häufigste 1x2 Secret-Raum.
 
-Die anderen beiden 1x2 Secret-Räume (Clean Chest Room und Fake End Portal Room) können nur im 1. Stock generieren. Dazu kommt, dass sie sich diesen Stock teilen, das bedeuted, dass das Platzieren eines 1x2 Secret-Raums nochmal einen 2-Seitigen Würfelwurf erfordert, um zu entscheiden, welcher der beiden generiert wird. Dadurch sind diese beiden Räume mit ca. $6\\%$ Wahrscheinlichkeit deutlich seltener als der `Attic Room` mit $11.75\\%$ auf Stockwerk 2 ($6\\% + 6\\% = 12\\%$ für einen 1x2 Secret-Raum in Stockwerk 1 bzw. 2)
+Die anderen beiden 1x2 Secret-Räume (Clean Chest Room und Fake End Portal Room) können nur im 1. Stock generieren. Dazu kommt, dass sie sich diesen Stock teilen, das bedeutet, dass das Platzieren eines 1x2 Secret-Raums nochmal einen 2-seitigen Würfelwurf erfordert, um zu entscheiden, welcher der beiden generiert wird.
 
 ### 2x2 Lava Room
 
-Der 2x2 Lava Room ist **der seltenste Secret-Raum**, da er eine sehr große Grundfläche hat (4 Zellen) und es dadurch sehr unwahrscheinlich ist, dass alle 4 Zellen nicht neben einem Gang liegen. Obwohl er technisch in allen Stockwerken generieren kann, ist er **auf allen Stockwerken nahezu gleich selten**. Für diese Art von Secret-Raum muss es eine **sehr ungünstige Hallway-Form** geben, damit er generieren kann. In den untersuchten $100.000$ generierten Woodland Mansions gab es ein Hallway-Muster, das zu **ca. 89%** auf Stockwerk 1 bzw. 2 zu einem 2x2 Lava Room geführt hat.
+Der 2x2 Lava Room ist **der seltenste Secret-Raum**, da er eine sehr große Grundfläche hat (4 Zellen) und es dadurch sehr unwahrscheinlich ist, dass alle 4 Zellen nicht neben einem Gang liegen. Obwohl er technisch in allen Stockwerken generieren kann, ist er **auf allen Stockwerken nahezu gleich selten**. Für diese Art von Secret-Raum muss es eine **sehr ungünstige Hallway-Form** geben, damit er generieren kann. In den untersuchten $100.000$ generierten Woodland Mansions gab es ein Hallway-Muster, das sehr deutlich auf Stockwerk 1 bzw. 2 zu einem 2x2 Lava Room geführt hat.
 
 Diese Seltenheit liegt nicht nur an der großen Grundfläche, sondern an mehreren Faktoren, die zusammen die Generierung eines 2x2 Lava Rooms extrem unwahrscheinlich machen:
 
@@ -200,7 +200,7 @@ Diese Seltenheit liegt nicht nur an der großen Grundfläche, sondern an mehrere
 
 Wie bereits bei der [Hallway-Generierung](#algorithmus-zur-generierung-der-hallways) erklärt, gibt es gewisse Formen von Hallways, die häufiger zu Secret-Räumen führen als andere. Besonders für den 1. Stock und den 2. Stock gibt es bestimmte Hallway-Formen, die es erst möglich machen, dass Secret-Räume generiert werden können. Im Folgenden werden für die verschiedenen Secret-Raum-Typen jeweils die häufigsten 6 Hallway-Formen gezeigt, die zu diesem Secret-Raum geführt haben. Zudem wird jeweils auch die Anzahl der unterschiedlichen Hallway-Formen gezeigt, die zu diesem Secret-Raum geführt haben, um die Vielfalt der Hallway-Formen zu verdeutlichen, die zu einem bestimmten Secret-Raum führen können.
 
-Alle Häufigkeiten und Prozent-Zahlen beziehen sich auf die 100.000 generierten Woodland Mansions.
+Alle Ergebnisse beziehen sich auf die 100.000 generierten Woodland Mansions.
 
 > [!Abstract] Legende:
 >
@@ -212,97 +212,79 @@ Alle Häufigkeiten und Prozent-Zahlen beziehen sich auf die 100.000 generierten 
 
 #### 1x1 - Stockwerk 1
 
-Generierungen mit mindestens einem 1x1 Secret-Raum: $6219 / 100.000 (6.22\\%)$
+Es gab nur 159 unterschiedliche Hallway-Formen, die zu einem 1x1 Secret-Raum auf **Stockwerk 1** geführt haben.
 
-Es gab nur $159$ unterschiedliche Hallway-Formen, die zu einem 1x1 Secret-Raum auf **Stockwerk 1** geführt haben.
+Wie man hier sieht, ist die 1. Form deutlich häufiger als andere Formen. Diese Form garantiert jedoch keine 1x1 Secret-Räume, diese Form ist die häufigste Form insgesamt für alle Secret-Raum-Typen, da sie viel Platz für Secret-Räume bietet.
 
-Wie man hier sieht, ist die 1. Form deutlich häufiger mit ca. **31%** als andere Formen. Diese Form garantiert jedoch keine 1x1 Secret-Räume, diese Form ist die häufigste Form insgesamt für alle Secret-Raum-Typen, da sie viel Platz für Secret-Räume bietet.
-
-![1x1 Secret-Room Hallway Shapes](/woodland_mansion/normal_heatmaps/hallways_floor1_1x1.png)
+![1x1 Secret-Room Hallway Shapes](/woodland_mansion/no_chances/hallways_floor1_1x1.png)
 
 #### 1x1 - Stockwerk 2
 
-Generierungen mit mindestens einem 1x1 Secret-Raum: $6154 / 100.000 (6.15\\%)$
+Es gab nur 157 unterschiedliche Hallway-Formen, die zu einem 1x1 Secret-Raum auf **Stockwerk 2** geführt haben.
 
-Es gab nur $157$ unterschiedliche Hallway-Formen, die zu einem 1x1 Secret-Raum auf **Stockwerk 2** geführt haben.
+Auch hier ist die 1. Form deutlich häufiger als andere Formen, diese Form ist die gleiche wie die häufigste Form auf Stockwerk 1, da die Hallways auf Stockwerk 1 und 2 identisch sind.
 
-Auch hier ist die 1. Form deutlich häufiger mit ca. 30% als andere Formen, diese Form ist die gleiche wie die häufigste Form auf Stockwerk 1, da die Hallways auf Stockwerk 1 und 2 identisch sind.
-
-![1x1 Secret-Room Hallway Shapes](/woodland_mansion/normal_heatmaps/hallways_floor2_1x1.png)
+![1x1 Secret-Room Hallway Shapes](/woodland_mansion/no_chances/hallways_floor2_1x1.png)
 
 #### 1x1 - Stockwerk 3
 
-Generierungen mit mindestens einem 1x1 Secret-Raum: $42468 / 100.000 (42.47\\%)$
-
-Es gab $1803$ unterschiedliche Hallway-Formen, die zu einem 1x1 Secret-Raum auf **Stockwerk 3** geführt haben.
+Es gab 1803 unterschiedliche Hallway-Formen, die zu einem 1x1 Secret-Raum auf **Stockwerk 3** geführt haben.
 
 Hier gibt es **keine großen Ausreißer** in den Hallway-Formen, die zu einer deutlich höheren Anzahl von 1x1 Secret-Räumen führen, jedoch gibt es 2 Formen die etwas häufiger sind als andere.
 
-![1x1 Secret-Room Hallway Shapes](/woodland_mansion/normal_heatmaps/hallways_floor3_1x1.png)
+![1x1 Secret-Room Hallway Shapes](/woodland_mansion/no_chances/hallways_floor3_1x1.png)
 
 ### 1x2 Secret-Räume Hallways
 
 #### 1x2 - Stockwerk 1
 
-Generierungen mit mindestens einem 1x2 Secret-Raum: $11687 / 100.000 (11.69\\%)$
+Es gab nur 140 unterschiedliche Hallway-Formen, die zu einem 1x2 Secret-Raum auf **Stockwerk 1** geführt haben.
 
-Es gab nur $140$ unterschiedliche Hallway-Formen, die zu einem 1x2 Secret-Raum auf **Stockwerk 1** geführt haben.
+Hier ist die 1. Form deutlich häufiger als andere Formen, diese Form garantiert jedoch keinen 1x2 Secret-Raum, diese Form ist die häufigste Form insgesamt für alle Secret-Raum-Typen, da sie viel Platz für Secret-Räume bietet.
 
-Hier ist die 1. Form mit **ca. 27% deutlich häufiger** als andere Formen, diese Form garantiert jedoch keinen 1x2 Secret-Raum, diese Form ist die häufigste Form insgesamt für alle Secret-Raum-Typen, da sie viel Platz für Secret-Räume bietet.
-
-![1x2 Secret-Room Hallway Shapes](/woodland_mansion/normal_heatmaps/hallways_floor1_1x2.png)
+![1x2 Secret-Room Hallway Shapes](/woodland_mansion/no_chances/hallways_floor1_1x2.png)
 
 #### 1x2 - Stockwerk 2
 
-Generierungen mit mindestens einem 1x2 Secret-Raum: $11754 / 100.000 (11.75\\%)$
+Es gab nur 134 unterschiedliche Hallway-Formen, die zu einem 1x2 Secret-Raum auf **Stockwerk 2** geführt haben.
 
-Es gab nur $134$ unterschiedliche Hallway-Formen, die zu einem 1x2 Secret-Raum auf **Stockwerk 2** geführt haben.
+Hier ist die 1. Form deutlich häufiger als andere Formen, diese Form garantiert jedoch keinen 1x2 Secret-Raum, diese Form ist die häufigste Form insgesamt für alle Secret-Raum-Typen, da sie viel Platz für Secret-Räume bietet.
 
-Hier ist die 1. Form mit **ca. 26% deutlich häufiger** als andere Formen, diese Form garantiert jedoch keinen 1x2 Secret-Raum, diese Form ist die häufigste Form insgesamt für alle Secret-Raum-Typen, da sie viel Platz für Secret-Räume bietet.
-
-![1x2 Secret-Room Hallway Shapes](/woodland_mansion/normal_heatmaps/hallways_floor2_1x2.png)
+![1x2 Secret-Room Hallway Shapes](/woodland_mansion/no_chances/hallways_floor2_1x2.png)
 
 #### 1x2 - Stockwerk 3
 
-Generierungen mit mindestens einem 1x2 Secret-Raum: $26399 / 100.000 (26.40\\%)
-
-Es gab $1651$ unterschiedliche Hallway-Formen, die zu einem 1x2 Secret-Raum auf **Stockwerk 3** geführt haben.
+Es gab 1651 unterschiedliche Hallway-Formen, die zu einem 1x2 Secret-Raum auf **Stockwerk 3** geführt haben.
 
 Hier gibt es **keine großen Ausreißer** in den Hallway-Formen, die zu einer deutlich höheren Anzahl von 1x2 Secret-Räumen führen, jedoch sind die **Formen** an sich auffällig, es scheint als ob **eine einzige Hallway-Zelle** und **ein L-Förmiger Hallway-Abschnitt** aus 8 Abschnitten besonders häufig zu 1x2 Secret-Räumen führen, da diese Formen mehr Platz für Secret-Räume bieten.
 
-![1x2 Secret-Room Hallway Shapes](/woodland_mansion/normal_heatmaps/hallways_floor3_1x2.png)
+![1x2 Secret-Room Hallway Shapes](/woodland_mansion/no_chances/hallways_floor3_1x2.png)
 
 ### 2x2 Secret-Raum (Lava Room) Hallways
 
 #### 2x2 - Stockwerk 1
 
-Generierungen mit einem 2x2 Secret-Raum: $1420 / 100.000 (1.42\\%)$
+Es gab nur 10 unterschiedliche Hallway-Formen, die zu einem 2x2 Secret-Raum auf **Stockwerk 1** geführt haben.
 
-Es gab nur $10$ unterschiedliche Hallway-Formen, die zu einem 2x2 Secret-Raum auf **Stockwerk 1** geführt haben.
+Hier ist die 1. Form deutlich häufiger als andere Formen, diese Form garantiert jedoch keinen 2x2 Secret-Raum, diese Form ist die häufigste Form insgesamt für alle Secret-Raum-Typen, da sie viel Platz für Secret-Räume bietet.
 
-Hier ist die 1. Form mit **ca. 89% deutlich häufiger** als andere Formen, diese Form garantiert jedoch keinen 2x2 Secret-Raum, diese Form ist die häufigste Form insgesamt für alle Secret-Raum-Typen, da sie viel Platz für Secret-Räume bietet.
-
-![2x2 Secret-Room Hallway Shapes](/woodland_mansion/normal_heatmaps/hallways_floor1_2x2.png)
+![2x2 Secret-Room Hallway Shapes](/woodland_mansion/no_chances/hallways_floor1_2x2.png)
 
 #### 2x2 - Stockwerk 2
 
-Generierungen mit einem 2x2 Secret-Raum: $1463 / 100.000 (1.46\\%)$
+Es gab nur 13 unterschiedliche Hallway-Formen, die zu einem 2x2 Secret-Raum auf **Stockwerk 2** geführt haben.
 
-Es gab nur $13$ unterschiedliche Hallway-Formen, die zu einem 2x2 Secret-Raum auf **Stockwerk 2** geführt haben.
+Hier ist die Generierung ähnlich zu Stockwerk 1, die 1. Form ist deutlich häufiger als andere Formen, diese Form garantiert jedoch keinen 2x2 Secret-Raum, diese Form ist die häufigste Form insgesamt für alle Secret-Raum-Typen, da sie viel Platz für Secret-Räume bietet.
 
-Hier ist die Generierung ähnlich zu Stockwerk 1, die 1. Form ist mit **ca. 88% deutlich häufiger** als andere Formen, diese Form garantiert jedoch keinen 2x2 Secret-Raum, diese Form ist die häufigste Form insgesamt für alle Secret-Raum-Typen, da sie viel Platz für Secret-Räume bietet.
-
-![2x2 Secret-Room Hallway Shapes](/woodland_mansion/normal_heatmaps/hallways_floor2_2x2.png)
+![2x2 Secret-Room Hallway Shapes](/woodland_mansion/no_chances/hallways_floor2_2x2.png)
 
 #### 2x2 - Stockwerk 3
 
-Generierungen mit einem 2x2 Secret-Raum: $1395 / 100.000 (1.40\\%)$
-
-Es gab $85$ unterschiedliche Hallway-Formen, die zu einem 2x2 Secret-Raum auf **Stockwerk 3** geführt haben.
+Es gab 85 unterschiedliche Hallway-Formen, die zu einem 2x2 Secret-Raum auf **Stockwerk 3** geführt haben.
 
 Hier sind ebenfalls **keine großen Ausreißer** in den Hallway-Formen, die zu einer deutlich höheren Anzahl von 2x2 Secret-Räumen führen, jedoch gibt es hier wieder einen **bestimmten Hallway-Verlauf**, der besonders häufig zu 2x2 Secret-Räumen führt, da er viel Platz für Secret-Räume bietet. Das ist der gleiche **L-Förmige Hallway-Abschnitt** aus 8 Abschnitten, der auch bei 1x2 Secret-Räumen auffällig war.
 
-![2x2 Secret-Room Hallway Shapes](/woodland_mansion/normal_heatmaps/hallways_floor3_2x2.png)
+![2x2 Secret-Room Hallway Shapes](/woodland_mansion/no_chances/hallways_floor3_2x2.png)
 
 ## Detaillierte Analyse jedes Raums pro Stockwerk
 
@@ -312,11 +294,9 @@ Hier sind ebenfalls **keine großen Ausreißer** in den Hallway-Formen, die zu e
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $56432 / 100.000 (56.43\\%)$
-
 Ein Raum mit einer Bruchsteinbank, auf der fünf Blumentöpfe mit vier verschiedenen Blumen platziert sind.
 
-![1x1_a1 - Flower room](/woodland_mansion/normal_heatmaps/1x1_a1_Flower_room.png)
+![1x1_a1 - Flower room](/woodland_mansion/no_chances/1x1_a1_Flower_room.png)
 
 ### 1x1_a2 - Pumpkin ring room
 
@@ -324,11 +304,9 @@ Ein Raum mit einer Bruchsteinbank, auf der fünf Blumentöpfe mit vier verschied
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $56085 / 100.000 (56.08\\%)$
-
 Ein Raum mit einem Bruchsteinring an den Wänden, auf dem Schienen liegen und an dessen Innenseiten Leitern angebracht sind. Ein einzelner geschnitzter Kürbis befindet sich in der Mitte des Rings gegenüber dem Eingang.
 
-![1x1_a2 - Pumpkin ring room](/woodland_mansion/normal_heatmaps/1x1_a2_Pumpkin_ring_room.png)
+![1x1_a2 - Pumpkin ring room](/woodland_mansion/no_chances/1x1_a2_Pumpkin_ring_room.png)
 
 ### 1x1_a3 - Office
 
@@ -336,11 +314,9 @@ Ein Raum mit einem Bruchsteinring an den Wänden, auf dem Schienen liegen und an
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $56109 / 100.000 (56.11\\%)
-
 Ein Raum mit zwei unterschiedlich hohen Bruchsteintischen und passenden Stühlen. Auf den Tischen befinden sich einige Blumentöpfe und Teppiche.
 
-![1x1_a3 - Office](/woodland_mansion/normal_heatmaps/1x1_a3_Office.png)
+![1x1_a3 - Office](/woodland_mansion/no_chances/1x1_a3_Office.png)
 
 ### 1x1_a4 - Checkerboard room
 
@@ -348,11 +324,9 @@ Ein Raum mit zwei unterschiedlich hohen Bruchsteintischen und passenden Stühlen
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $55970 / 100.000 (55.97\\%)$
-
 Ein Raum mit einem Schachbrettmuster auf dem Boden, der an eine Küche erinnert. Alle Wände sind mit Eichenzäunen ausgekleidet. Über der Tür ist eine Beutekiste versteckt.
 
-![1x1_a4 - Checkerboard room](/woodland_mansion/normal_heatmaps/1x1_a4_Checkerboard_room.png)
+![1x1_a4 - Checkerboard room](/woodland_mansion/no_chances/1x1_a4_Checkerboard_room.png)
 
 ### 1x1_a5 - White tulip sanctuary
 
@@ -360,11 +334,9 @@ Ein Raum mit einem Schachbrettmuster auf dem Boden, der an eine Küche erinnert.
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $56509 / 100.000 (56.51\\%)
-
 Ein Raum mit einer eingelassenen Bruchsteinstruktur an der Wand und einer einzelnen getopften Tulpe in der Nische.
 
-![1x1_a5 - White tulip sanctuary](/woodland_mansion/normal_heatmaps/1x1_a5_White_tulip_sanctuary.png)
+![1x1_a5 - White tulip sanctuary](/woodland_mansion/no_chances/1x1_a5_White_tulip_sanctuary.png)
 
 ### 1x1_b1 - Birch arch room
 
@@ -372,11 +344,9 @@ Ein Raum mit einer eingelassenen Bruchsteinstruktur an der Wand und einer einzel
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $65611 / 100.000 (65.61\\%)$
-
 Ein büroähnlicher Raum mit einem Schreibtisch und einem Blumentopf darauf sowie einem markanten Bogen in der Mitte aus Birkenholzzäunen, -stufen und -treppen.
 
-![1x1_b1 - Birch arch room](/woodland_mansion/normal_heatmaps/1x1_b1_Birch_arch_room.png)
+![1x1_b1 - Birch arch room](/woodland_mansion/no_chances/1x1_b1_Birch_arch_room.png)
 
 ### 1x1_b2 - Small dining room
 
@@ -384,11 +354,9 @@ Ein büroähnlicher Raum mit einem Schreibtisch und einem Blumentopf darauf sowi
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $65412 / 100.000 (65.41\\%)$
-
 Ein Raum mit einem teppichbelegten Tisch und Stühlen aus Schwarzeichenholztreppen. Die oberen Wandteile sind mit kaminähnlichen Strukturen verziert.
 
-![1x1_b2 - Small dining room](/woodland_mansion/normal_heatmaps/1x1_b2_Small_dining_room.png)
+![1x1_b2 - Small dining room](/woodland_mansion/no_chances/1x1_b2_Small_dining_room.png)
 
 ### 1x1_b3 - Single bed bedroom
 
@@ -396,11 +364,9 @@ Ein Raum mit einem teppichbelegten Tisch und Stühlen aus Schwarzeichenholztrepp
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $65653 / 100.000 (65.65\\%)$
-
 Ein gemütlicher Raum mit einem Wollbett, einem Bruchsteinkamin und einem Bonsai aus einem Zaun und einem Laubblock.
 
-![1x1_b3 - Single bed bedroom](/woodland_mansion/normal_heatmaps/1x1_b3_Single_bed_bedroom.png)
+![1x1_b3 - Single bed bedroom](/woodland_mansion/no_chances/1x1_b3_Single_bed_bedroom.png)
 
 ### 1x1_b4 - Small library
 
@@ -408,11 +374,9 @@ Ein gemütlicher Raum mit einem Wollbett, einem Bruchsteinkamin und einem Bonsai
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $65362 / 100.000 (65.36\\%)$
-
 Ein kleiner Arbeitsraum, dessen einzige Besonderheit mehrere Bücherregale in den Ecken sind.
 
-![1x1_b4 - Small library](/woodland_mansion/normal_heatmaps/1x1_b4_Small_library.png)
+![1x1_b4 - Small library](/woodland_mansion/no_chances/1x1_b4_Small_library.png)
 
 ### 1x1_b5 - Allium room
 
@@ -420,11 +384,9 @@ Ein kleiner Arbeitsraum, dessen einzige Besonderheit mehrere Bücherregale in de
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $65680 / 100.000 (65.68\\%)$
-
 Ein Raum mit einem von Ranken umschlungenen Eichenständer, auf dem mehrere getopfte Sternlauche stehen. Ein voller Kessel und eine Truhe mit weiteren Sternlauchen befinden sich in der Nähe. Das Dach besteht aus Eichenzäunen.
 
-![1x1_b5 - Allium room](/woodland_mansion/normal_heatmaps/1x1_b5_Allium_room.png)
+![1x1_b5 - Allium room](/woodland_mansion/no_chances/1x1_b5_Allium_room.png)
 
 ### 1x2_a1 - Gray banner room
 
@@ -432,11 +394,9 @@ Ein Raum mit einem von Ranken umschlungenen Eichenständer, auf dem mehrere geto
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $39616 / 100.000 (39.62\\%)$
-
 Ein Raum mit einer altarähnlichen Konstruktion aus Bruchstein in der Mitte, die einen kurzen, schmalen Durchgang mit einem grauen Banner am Ende bildet. Hinter der Konstruktion ist eine Truhe versteckt. Hier spawnt immer ein Diener (Vindicator).
 
-![1x2_a1 - Gray banner room](/woodland_mansion/normal_heatmaps/1x2_a1_Gray_banner_room.png)
+![1x2_a1 - Gray banner room](/woodland_mansion/no_chances/1x2_a1_Gray_banner_room.png)
 
 ### 1x2_a2 - Wheat farm
 
@@ -444,11 +404,9 @@ Ein Raum mit einer altarähnlichen Konstruktion aus Bruchstein in der Mitte, die
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $39472 / 100.000 (39.47\\%)$
-
 Ein Raum mit einer Weizenfarm und einem kleinen Tisch mit Stuhl in der Ecke. Das Wasser der Farm ist mit Seerosenblättern bedeckt. Einige oder alle Nutzpflanzen können fehlen. Die Farm ähnelt einer Dorffarm, verwendet jedoch Schwarzeichenstämme.
 
-![1x2_a2 - Wheat farm](/woodland_mansion/normal_heatmaps/1x2_a2_Wheat_farm.png)
+![1x2_a2 - Wheat farm](/woodland_mansion/no_chances/1x2_a2_Wheat_farm.png)
 
 ### 1x2_a3 - Forge room
 
@@ -456,11 +414,9 @@ Ein Raum mit einer Weizenfarm und einem kleinen Tisch mit Stuhl in der Ecke. Das
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $39679 / 100.000 (39.68\\%)$
-
 Ein Raum mit Bögen aus poliertem Andesit. Am Ende des Raums befinden sich ein beschädigter Amboss und ein Lavabecken, das von poliertem Andesit umgeben ist, um das Brennen der umliegenden Bretter zu verhindern. Hier spawnt immer ein Diener.
 
-![1x2_a3 - Forge room](/woodland_mansion/normal_heatmaps/1x2_a3_Forge_room.png)
+![1x2_a3 - Forge room](/woodland_mansion/no_chances/1x2_a3_Forge_room.png)
 
 ### 1x2_a4 - Sapling farm
 
@@ -468,11 +424,9 @@ Ein Raum mit Bögen aus poliertem Andesit. Am Ende des Raums befinden sich ein b
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $39838 / 100.000 (39.84\\%)$
-
 Ein Raum mit zwei Ebenen voller Schwarzeichensetzlinge, die durch Leitern bis zur Decke verbunden sind. Eine Truhe mit Schwarzeichensetzlingen steht in der Nähe des Eingangs.
 
-![1x2_a4 - Sapling farm](/woodland_mansion/normal_heatmaps/1x2_a4_Sapling_farm.png)
+![1x2_a4 - Sapling farm](/woodland_mansion/no_chances/1x2_a4_Sapling_farm.png)
 
 ### 1x2_a5 - Wool room
 
@@ -480,11 +434,9 @@ Ein Raum mit zwei Ebenen voller Schwarzeichensetzlinge, die durch Leitern bis zu
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $39268 / 100.000 (39.27\\%)$
-
 Ein Raum mit einem unordentlichen Haufen aus verschiedenen blauen Wolltönen.
 
-![1x2_a5 - Wool room](/woodland_mansion/normal_heatmaps/1x2_a5_Wool_room.png)
+![1x2_a5 - Wool room](/woodland_mansion/no_chances/1x2_a5_Wool_room.png)
 
 ### 1x2_a6 - Tree-chopping room
 
@@ -492,14 +444,12 @@ Ein Raum mit einem unordentlichen Haufen aus verschiedenen blauen Wolltönen.
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $39500 / 100.000 (39.50\\%)$
-
 Ein Raum mit einem künstlichen Baum auf einer Erdplattform und einer Truhe, die immer eine Eisenaxt mit Effizienz I enthält. Der Eingang ist durch eine Wand aus Schwarzeichenbrettern verschlossen.
 
 > [!Note] Achtung:
 > Dieser Raum hat eine versiegelte Tür. Dieses Feature wird oft verwechselt mit den "Secret-Räumen", die gar keine Türen haben!
 
-![1x2_a6 - Tree-chopping room](/woodland_mansion/normal_heatmaps/1x2_a6_Tree_chopping_room.png)
+![1x2_a6 - Tree-chopping room](/woodland_mansion/no_chances/1x2_a6_Tree_chopping_room.png)
 
 ### 1x2_a7 - Mushroom farm
 
@@ -507,11 +457,9 @@ Ein Raum mit einem künstlichen Baum auf einer Erdplattform und einer Truhe, die
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $39400 / 100.000 (39.40\\%)$
-
 Ein Raum mit einer Pilzfarm sowie einem Tisch, einem Stuhl und einer leeren Truhe.
 
-![1x2_a7 - Mushroom farm](/woodland_mansion/normal_heatmaps/1x2_a7_Mushroom_farm.png)
+![1x2_a7 - Mushroom farm](/woodland_mansion/no_chances/1x2_a7_Mushroom_farm.png)
 
 ### 1x2_a8 - Dual-staged farm
 
@@ -519,11 +467,9 @@ Ein Raum mit einer Pilzfarm sowie einem Tisch, einem Stuhl und einer leeren Truh
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $39717 / 100.000 (39.72\\%)$
-
 Ein Raum mit einer zweistufigen Farm; auf der unteren wachsen Kürbisse und auf der oberen Melonen. Hier spawnt immer ein Diener.
 
-![1x2_a8 - Dual-staged farm](/woodland_mansion/normal_heatmaps/1x2_a8_Dual_staged_farm.png)
+![1x2_a8 - Dual-staged farm](/woodland_mansion/no_chances/1x2_a8_Dual_staged_farm.png)
 
 ### 1x2_a9 - Small storage room
 
@@ -531,11 +477,9 @@ Ein Raum mit einer zweistufigen Farm; auf der unteren wachsen Kürbisse und auf 
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $39360 / 100.000 (39.36\\%)$
-
 Ein Raum mit Regalen, in denen viele leere einzelne Truhen stehen. Hier spawnt immer ein Diener.
 
-![1x2_a9 - Small storage room](/woodland_mansion/normal_heatmaps/1x2_a9_Small_storage_room.png)
+![1x2_a9 - Small storage room](/woodland_mansion/no_chances/1x2_a9_Small_storage_room.png)
 
 ### 1x2_b1 - Redstone jail
 
@@ -543,11 +487,9 @@ Ein Raum mit Regalen, in denen viele leere einzelne Truhen stehen. Hier spawnt i
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $26870 / 100.000 (26.87\\%)$
-
 Ein Raum mit einem großen Bruchsteingefängnis, das über eine mit einem Hebel verbundene Redstone-Schaltung zugänglich ist, die zwei Eisentüren öffnet. Im Inneren befinden sich ein kleiner Bruchsteintisch, braune Teppiche und ein Kessel. Hier spawnt immer ein Diener.
 
-![1x2_b1 - Redstone jail](/woodland_mansion/normal_heatmaps/1x2_b1_Redstone_jail.png)
+![1x2_b1 - Redstone jail](/woodland_mansion/no_chances/1x2_b1_Redstone_jail.png)
 
 ### 1x2_b2 - Small jail
 
@@ -555,11 +497,9 @@ Ein Raum mit einem großen Bruchsteingefängnis, das über eine mit einem Hebel 
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $26784 / 100.000 (26.78\\%)$
-
 Ein Raum mit einem Bruchsteingefängnis, das einen Kessel und braune Teppiche enthält. Außerhalb befinden sich ein Tisch und ein Stuhl, in deren Nähe immer ein Diener spawnt.
 
-![1x2_b2 - Small jail](/woodland_mansion/normal_heatmaps/1x2_b2_Small_jail.png)
+![1x2_b2 - Small jail](/woodland_mansion/no_chances/1x2_b2_Small_jail.png)
 
 ### 1x2_b3 - Wood arch hallway
 
@@ -567,11 +507,9 @@ Ein Raum mit einem Bruchsteingefängnis, das einen Kessel und braune Teppiche en
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $26772 / 100.000 (26.77\\%)$
-
 Ein Raum mit mehreren Bögen aus Schwarzeichenstämmen sowie einer Beutekiste am Ende. Hier spawnt immer ein Diener.
 
-![1x2_b3 - Wood arch hallway](/woodland_mansion/normal_heatmaps/1x2_b3_Wood_arch_hallway.png)
+![1x2_b3 - Wood arch hallway](/woodland_mansion/no_chances/1x2_b3_Wood_arch_hallway.png)
 
 ### 1x2_b4 - Winding stairway room
 
@@ -579,11 +517,9 @@ Ein Raum mit mehreren Bögen aus Schwarzeichenstämmen sowie einer Beutekiste am
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $26608 / 100.000 (26.61\\%)$
-
 Ein Raum mit einer ein Block breiten, eingemauerten Wendeltreppe, die zu einer Beutekiste führt.
 
-![1x2_b4 - Winding stairway room](/woodland_mansion/normal_heatmaps/1x2_b4_Winding_stairway_room.png)
+![1x2_b4 - Winding stairway room](/woodland_mansion/no_chances/1x2_b4_Winding_stairway_room.png)
 
 ### 1x2_b5 - Illager head room
 
@@ -591,11 +527,9 @@ Ein Raum mit einer ein Block breiten, eingemauerten Wendeltreppe, die zu einer B
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $26656 / 100.000 (26.66\\%)$
-
 Ein ansonsten leerer Raum mit Illager-Pixelkunst.
 
-![1x2_b5 - Illager head room](/woodland_mansion/normal_heatmaps/1x2_b5_Illager_head_room.png)
+![1x2_b5 - Illager head room](/woodland_mansion/no_chances/1x2_b5_Illager_head_room.png)
 
 ### 1x2_c1 - Medium dining room
 
@@ -603,11 +537,9 @@ Ein ansonsten leerer Raum mit Illager-Pixelkunst.
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $76337 / 100.000 (76.34\\%)$
-
 Ein Raum mit einem Tisch aus Eichentreppen, dekoriert mit einer Blume im Topf; in der Ecke scheint eine Anrichte zu sein. Ein Kronleuchter hängt von der Decke.
 
-![1x2_c1 - Medium dining room](/woodland_mansion/normal_heatmaps/1x2_c1_Medium_dining_room.png)
+![1x2_c1 - Medium dining room](/woodland_mansion/no_chances/1x2_c1_Medium_dining_room.png)
 
 ### 1x2_c2 - Double bed bedroom
 
@@ -615,11 +547,9 @@ Ein Raum mit einem Tisch aus Eichentreppen, dekoriert mit einer Blume im Topf; i
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $76328 / 100.000 (76.33\\%)$
-
 Ein Raum mit rosa und lila Betten am Ende sowie einem Tisch mit Blumentopf in der Ecke.
 
-![1x2_c2 - Double bed bedroom](/woodland_mansion/normal_heatmaps/1x2_c2_Double_bed_bedroom.png)
+![1x2_c2 - Double bed bedroom](/woodland_mansion/no_chances/1x2_c2_Double_bed_bedroom.png)
 
 ### 1x2_c3 - Triple bed bedroom
 
@@ -627,11 +557,9 @@ Ein Raum mit rosa und lila Betten am Ende sowie einem Tisch mit Blumentopf in de
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $76363 / 100.000 (76.36\\%)$
-
 Ein Raum mit drei blauen Betten und einem Schreibtisch. Hier spawnen immer drei Diener.
 
-![1x2_c3 - Triple bed bedroom](/woodland_mansion/normal_heatmaps/1x2_c3_Triple_bed_bedroom.png)
+![1x2_c3 - Triple bed bedroom](/woodland_mansion/no_chances/1x2_c3_Triple_bed_bedroom.png)
 
 ### 1x2_c4 - Medium library
 
@@ -639,11 +567,9 @@ Ein Raum mit drei blauen Betten und einem Schreibtisch. Hier spawnen immer drei 
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $76241 / 100.000 (76.24\\%)$
-
 Ein lounge-artiger Raum mit vielen Bücherregalen, schaukelähnlichen Sitzstrukturen an den Wänden und einem Tisch in der Mitte mit vier nach Größe geordneten Blumentöpfen.
 
-![1x2_c4 - Medium library](/woodland_mansion/normal_heatmaps/1x2_c4_Medium_library.png)
+![1x2_c4 - Medium library](/woodland_mansion/no_chances/1x2_c4_Medium_library.png)
 
 ### 1x2_c_stairs - Curved staircase
 
@@ -651,11 +577,9 @@ Ein lounge-artiger Raum mit vielen Bücherregalen, schaukelähnlichen Sitzstrukt
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $73523 / 100.000 (73.52\\%)$
-
 Eine Treppe, die nach oben führt und am Fuß nach links oder rechts gebogen ist, darüber hängt ein Illager-Kopf aus Wolle. Jedes Waldanwesen generiert einen von zwei Treppenhaustypen. Nur eine Treppe führt in den dritten Stock, falls mehrere vorhanden sind.
 
-![1x2_c_stairs - Curved staircase](/woodland_mansion/normal_heatmaps/1x2_c_stairs_Curved_staircase.png)
+![1x2_c_stairs - Curved staircase](/woodland_mansion/no_chances/1x2_c_stairs_Curved_staircase.png)
 
 ### 1x2_d1 - Master bedroom
 
@@ -663,11 +587,9 @@ Eine Treppe, die nach oben führt und am Fuß nach links oder rechts gebogen ist
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $41489 / 100.000 (41.49\\%)$
-
 Ein Raum mit einem prunkvollen Himmelbett. Über dem Türrahmen hängen graue Banner an einer verzierten Wanddekoration.
 
-![1x2_d1 - Master bedroom](/woodland_mansion/normal_heatmaps/1x2_d1_Master_bedroom.png)
+![1x2_d1 - Master bedroom](/woodland_mansion/no_chances/1x2_d1_Master_bedroom.png)
 
 ### 1x2_d2 - Bedroom with loft
 
@@ -675,11 +597,9 @@ Ein Raum mit einem prunkvollen Himmelbett. Über dem Türrahmen hängen graue Ba
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $41403 / 100.000 (41.40\\%)$
-
 Ein zweistöckiges Schlafzimmer mit einem Schrank aus Birkenbrettern und Schwarzeichentüren auf der ersten Ebene. Eine Leiter am Eingang führt zu einer Empore mit Beutekiste und Wollbett.
 
-![1x2_d2 - Bedroom with loft](/woodland_mansion/normal_heatmaps/1x2_d2_Bedroom_with_loft.png)
+![1x2_d2 - Bedroom with loft](/woodland_mansion/no_chances/1x2_d2_Bedroom_with_loft.png)
 
 ### 1x2_d3 - Ritual room
 
@@ -687,11 +607,9 @@ Ein zweistöckiges Schlafzimmer mit einem Schrank aus Birkenbrettern und Schwarz
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $41565 / 100.000 (41.57\\%)$
-
 Ein Raum mit einer komplexen Altarstruktur und einem markanten, erhöhten Block unter einem schwarzen Teppich. Bruchsteinbänke verlaufen an beiden Seiten, und eine Konstruktion aus Bruchstein mit zwei schwarzen Bannern hängt über dem Altar. Hier spawnen immer zwei Diener und ein Magier (Evoker).
 
-![1x2_d3 - Ritual room](/woodland_mansion/normal_heatmaps/1x2_d3_Ritual_room.png)
+![1x2_d3 - Ritual room](/woodland_mansion/no_chances/1x2_d3_Ritual_room.png)
 
 ### 1x2_d4 - Cat statue room
 
@@ -699,11 +617,9 @@ Ein Raum mit einer komplexen Altarstruktur und einem markanten, erhöhten Block 
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $41476 / 100.000 (41.48\\%)$
-
 Ein Raum mit einer großen Statue einer Katze aus schwarzer Wolle in der Mitte.
 
-![1x2_d4 - Cat statue room](/woodland_mansion/normal_heatmaps/1x2_d4_Cat_statue_room.png)
+![1x2_d4 - Cat statue room](/woodland_mansion/no_chances/1x2_d4_Cat_statue_room.png)
 
 ### 1x2_d5 - Chicken statue room
 
@@ -711,11 +627,9 @@ Ein Raum mit einer großen Statue einer Katze aus schwarzer Wolle in der Mitte.
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $41339 / 100.000 (41.34\\%)$
-
 Ein Raum mit einer großen Statue eines Huhns aus Wolle in der Mitte.
 
-![1x2_d5 - Chicken statue room](/woodland_mansion/normal_heatmaps/1x2_d5_Chicken_statue_room.png)
+![1x2_d5 - Chicken statue room](/woodland_mansion/no_chances/1x2_d5_Chicken_statue_room.png)
 
 ### 1x2_d_stairs - Straight staircase
 
@@ -723,11 +637,9 @@ Ein Raum mit einer großen Statue eines Huhns aus Wolle in der Mitte.
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $26477 / 100.000 (26.48\\%)$
-
 Eine gerade Treppe, die in den dritten Stock führt, darüber befindet sich Illager-Pixelkunst. Jedes Waldanwesen generiert einen von zwei Treppenhaustypen.
 
-![1x2_d_stairs - Straight staircase](/woodland_mansion/normal_heatmaps/1x2_d_stairs_Straight_staircase.png)
+![1x2_d_stairs - Straight staircase](/woodland_mansion/no_chances/1x2_d_stairs_Straight_staircase.png)
 
 ### 2x2_a1 - Large jail
 
@@ -735,11 +647,9 @@ Eine gerade Treppe, die in den dritten Stock führt, darüber befindet sich Illa
 
 Raum-Typ: `2x2`
 
-Wahrscheinlichkeit pro Mansion: $57479 / 100.000 (57.48\\%)$
-
 Ein Raum mit vier Bruchsteingefängniszellen von leicht unterschiedlicher Größe. Hier spawnt immer ein Diener. In den Zellen besteht die Chance, dass Hilfsgeister (Allays) spawnen.
 
-![2x2_a1 - Large jail](/woodland_mansion/normal_heatmaps/2x2_a1_Large_jail.png)
+![2x2_a1 - Large jail](/woodland_mansion/no_chances/2x2_a1_Large_jail.png)
 
 ### 2x2_a2 - Large storage room
 
@@ -747,11 +657,9 @@ Ein Raum mit vier Bruchsteingefängniszellen von leicht unterschiedlicher Größ
 
 Raum-Typ: `2x2`
 
-Wahrscheinlichkeit pro Mansion: $57428 / 100.000 (57.43\\%)$
-
 Ein Raum mit Regalen, die viele leere Doppeltruhen enthalten. Hier spawnt immer ein Diener.
 
-![2x2_a2 - Large storage room](/woodland_mansion/normal_heatmaps/2x2_a2_Large_storage_room.png)
+![2x2_a2 - Large storage room](/woodland_mansion/no_chances/2x2_a2_Large_storage_room.png)
 
 ### 2x2_a3 - Illager statue room
 
@@ -759,11 +667,9 @@ Ein Raum mit Regalen, die viele leere Doppeltruhen enthalten. Hier spawnt immer 
 
 Raum-Typ: `2x2`
 
-Wahrscheinlichkeit pro Mansion: $57502 / 100.000 (57.50\\%)$
-
 Ein Raum mit einer riesigen Statue des Oberkörpers eines Illagers aus Wolle, inklusive Händen, die in der linken Hand ein fackelähnliches Objekt halten. Ein Lapislazuliblock ist im Inneren des Kopfes versteckt.
 
-![2x2_a3 - Illager statue room](/woodland_mansion/normal_heatmaps/2x2_a3_Illager_statue_room.png)
+![2x2_a3 - Illager statue room](/woodland_mansion/no_chances/2x2_a3_Illager_statue_room.png)
 
 ### 2x2_a4 - Nature room
 
@@ -771,11 +677,9 @@ Ein Raum mit einer riesigen Statue des Oberkörpers eines Illagers aus Wolle, in
 
 Raum-Typ: `2x2`
 
-Wahrscheinlichkeit pro Mansion: $57427 / 100.000 (57.43\\%)$
-
 Ein Raum mit einem Wasserspiel aus Andesit in einer Ecke und einem künstlichen Baum aus Schwarzeichenholz in der anderen.
 
-![2x2_a4 - Nature room](/woodland_mansion/normal_heatmaps/2x2_a4_Nature_room.png)
+![2x2_a4 - Nature room](/woodland_mansion/no_chances/2x2_a4_Nature_room.png)
 
 ### 2x2_b1 - Large dining room
 
@@ -783,11 +687,9 @@ Ein Raum mit einem Wasserspiel aus Andesit in einer Ecke und einem künstlichen 
 
 Raum-Typ: `2x2`
 
-Wahrscheinlichkeit pro Mansion: $62837 / 100.000 (62.84\\%)$
-
 Ein großer Speisesaal mit mehreren Tischen für drei Personen und einem Kronleuchter an der Decke. Eine kleine Anrichte sowie Fackeln in der Mitte jeder Wand sind ebenfalls vorhanden. Hier spawnen immer zwei Diener und ein Magier.
 
-![2x2_b1 - Large dining room](/woodland_mansion/normal_heatmaps/2x2_b1_Large_dining_room.png)
+![2x2_b1 - Large dining room](/woodland_mansion/no_chances/2x2_b1_Large_dining_room.png)
 
 ### 2x2_b2 - Conference room
 
@@ -795,11 +697,9 @@ Ein großer Speisesaal mit mehreren Tischen für drei Personen und einem Kronleu
 
 Raum-Typ: `2x2`
 
-Wahrscheinlichkeit pro Mansion: $62541 / 100.000 (62.54\\%)$
-
 Ein großer Versammlungssaal mit einem U-förmigen Tisch, der mit getopften Tulpen dekoriert ist, sowie zwei Kronleuchtern an der Decke. Hier spawnen immer zwei Diener und ein Magier.
 
-![2x2_b2 - Conference room](/woodland_mansion/normal_heatmaps/2x2_b2_Conference_room.png)
+![2x2_b2 - Conference room](/woodland_mansion/no_chances/2x2_b2_Conference_room.png)
 
 ### 2x2_b3 - Large library
 
@@ -807,11 +707,9 @@ Ein großer Versammlungssaal mit einem U-förmigen Tisch, der mit getopften Tulp
 
 Raum-Typ: `2x2`
 
-Wahrscheinlichkeit pro Mansion: $62718 / 100.000 (62.72\\%)$
-
 Ein großer Raum mit drei Bücherregal-Einheiten sowie einem Sitzbereich mit drei großen Sesseln.
 
-![2x2_b3 - Large library](/woodland_mansion/normal_heatmaps/2x2_b3_Large_library.png)
+![2x2_b3 - Large library](/woodland_mansion/no_chances/2x2_b3_Large_library.png)
 
 ### 2x2_b4 - Map room
 
@@ -819,11 +717,9 @@ Ein großer Raum mit drei Bücherregal-Einheiten sowie einem Sitzbereich mit dre
 
 Raum-Typ: `2x2`
 
-Wahrscheinlichkeit pro Mansion: $62396 / 100.000 (62.40\\%)$
-
 Ein Raum mit einem großen Tisch, auf dem farbige Teppiche liegen, deren Muster anscheinend eine Karte darstellen. Ein kleines Bücherregal steht an einer der Wände. Hier spawnen immer zwei Diener und ein Magier.
 
-![2x2_b4 - Map room](/woodland_mansion/normal_heatmaps/2x2_b4_Map_room.png)
+![2x2_b4 - Map room](/woodland_mansion/no_chances/2x2_b4_Map_room.png)
 
 ### 2x2_b5 - Arena room
 
@@ -831,11 +727,9 @@ Ein Raum mit einem großen Tisch, auf dem farbige Teppiche liegen, deren Muster 
 
 Raum-Typ: `2x2`
 
-Wahrscheinlichkeit pro Mansion: $62611 / 100.000 (62.61\\%)$
-
 Ein großer Raum mit einer arena-ähnlichen Plattform aus glatten Steinplatten, die von einem Ring aus Schwarzeichenzäunen umgeben ist. Eine Leiter führt zu einer Empore mit einer versteckten Beutekiste.
 
-![2x2_b5 - Arena room](/woodland_mansion/normal_heatmaps/2x2_b5_Arena_room.png)
+![2x2_b5 - Arena room](/woodland_mansion/no_chances/2x2_b5_Arena_room.png)
 
 ### 1x1_as1 - X room (Secret Room)
 
@@ -843,11 +737,9 @@ Ein großer Raum mit einer arena-ähnlichen Plattform aus glatten Steinplatten, 
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $14542 / 100.000 (14.54\\%)$
-
 Ein Geheimraum mit dekorativen "X"-Mustern aus Bruchstein an den Wänden. In der Ecke befindet sich eine Truhe. Diese Räume können auf jeder Etage generiert werden.
 
-![1x1_as1 - X room](/woodland_mansion/normal_heatmaps/1x1_as1_X_room.png)
+![1x1_as1 - X room](/woodland_mansion/no_chances/1x1_as1_X_room.png)
 
 ### 1x1_as2 - Spider room (Secret Room)
 
@@ -855,11 +747,9 @@ Ein Geheimraum mit dekorativen "X"-Mustern aus Bruchstein an den Wänden. In der
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $14646 / 100.000 (14.65\\%)$
-
 Ein Geheimraum voller Spinnweben mit einem Spinnen-Monsterspawner in der Mitte. Diese Räume können auf jeder Etage generiert werden.
 
-![1x1_as2 - Spider room](/woodland_mansion/normal_heatmaps/1x1_as2_Spider_room.png)
+![1x1_as2 - Spider room](/woodland_mansion/no_chances/1x1_as2_Spider_room.png)
 
 ### 1x1_as3 - Obsidian room (Secret Room)
 
@@ -867,11 +757,9 @@ Ein Geheimraum voller Spinnweben mit einem Spinnen-Monsterspawner in der Mitte. 
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $14481 / 100.000 (14.48\\%)$
-
 Ein Geheimraum mit einer oktaederförmigen Obsidianmasse, in deren Innerem sich ein Diamantblock verbirgt. Diese Räume können auf jeder Etage generiert werden.
 
-![1x1_as3 - Obsidian room](/woodland_mansion/normal_heatmaps/1x1_as3_Obsidian_room.png)
+![1x1_as3 - Obsidian room](/woodland_mansion/no_chances/1x1_as3_Obsidian_room.png)
 
 ### 1x1_as4 - Birch pillar room (Secret Room)
 
@@ -879,11 +767,9 @@ Ein Geheimraum mit einer oktaederförmigen Obsidianmasse, in deren Innerem sich 
 
 Raum-Typ: `1x1`
 
-Wahrscheinlichkeit pro Mansion: $14627 / 100.000 (14.63\\%)$
-
 Ein Geheimraum mit vier bis zur Decke ragenden Säulen aus Birkenholzbrettern. Diese Räume können auf jeder Etage generiert werden.
 
-![1x1_as4 - Birch pillar room](/woodland_mansion/normal_heatmaps/1x1_as4_Birch_pillar_room.png)
+![1x1_as4 - Birch pillar room](/woodland_mansion/no_chances/1x1_as4_Birch_pillar_room.png)
 
 ### 1x2_s1 - Clean chest room (Secret Room)
 
@@ -891,11 +777,9 @@ Ein Geheimraum mit vier bis zur Decke ragenden Säulen aus Birkenholzbrettern. D
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $6235 / 100.000 (6.24\\%)$
-
 Ein Geheimraum mit einer einsamen Beutekiste, umgeben von vier Fackeln auf Schwarzeichenzäunen in jeder Ecke des ansonsten leeren Raums. Diese Räume generieren nur im ersten Stock.
 
-![1x2_s1 - Clean chest room](/woodland_mansion/normal_heatmaps/1x2_s1_Clean_chest_room.png)
+![1x2_s1 - Clean chest room](/woodland_mansion/no_chances/1x2_s1_Clean_chest_room.png)
 
 ### 1x2_s2 - Fake End portal room (Secret Room)
 
@@ -903,11 +787,9 @@ Ein Geheimraum mit einer einsamen Beutekiste, umgeben von vier Fackeln auf Schwa
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $6290 / 100.000 (6.29\\%)$
-
 Ein Geheimraum mit einer Plattform aus orangefarbener Wolle in der Mitte und einem Ring aus grüner Wolle darüber, was wie ein End-Portal in einer Festung mit Lava darunter aussieht. Bruchsteintreppen und befallener Bruchstein ermöglichen den Zugang zum Ring, auf dem sich eine Redstone-Truhe mit zwei Enderperlen zwischen zwei TNT-Blöcken befindet. Wenn die Falle ausgelöst wird, zerstört das TNT den befallenen Bruchstein und setzt Silberfischchen frei. Diese Räume generieren nur im ersten Stock.
 
-![1x2_s2 - Fake End portal room](/woodland_mansion/normal_heatmaps/1x2_s2_Fake_End_portal_room.png)
+![1x2_s2 - Fake End portal room](/woodland_mansion/no_chances/1x2_s2_Fake_End_portal_room.png)
 
 ### 1x2_se1 - Attic room (Secret Room)
 
@@ -915,11 +797,9 @@ Ein Geheimraum mit einer Plattform aus orangefarbener Wolle in der Mitte und ein
 
 Raum-Typ: `1x2`
 
-Wahrscheinlichkeit pro Mansion: $35075 / 100.000 (35.08\\%)$
-
 Ein Geheimraum, der in zwei Ebenen unterteilt ist. Die untere Ebene ist leer, während die verborgene obere Ebene an beiden Enden eine Truhe enthält. Diese Räume generieren in den oberen zwei Stockwerken.
 
-![1x2_se1 - Attic room](/woodland_mansion/normal_heatmaps/1x2_se1_Attic_room.png)
+![1x2_se1 - Attic room](/woodland_mansion/no_chances/1x2_se1_Attic_room.png)
 
 ### 2x2_s1 - Lava room (Secret Room)
 
@@ -927,8 +807,6 @@ Ein Geheimraum, der in zwei Ebenen unterteilt ist. Die untere Ebene ist leer, w�
 
 Raum-Typ: `2x2`
 
-Wahrscheinlichkeit pro Mansion: $3763 / 100.000 (3.76\\%)$
-
 Ein Geheimraum mit einer lavagefüllten Vitrine aus Glas, die von großen Obsidian-Fundamenten an Boden und Decke gehalten wird. In der Glasvitrine ist ein Diamantblock versteckt. Diese Räume können auf jeder Etage generiert werden.
 
-![2x2_s1 - Lava room](/woodland_mansion/normal_heatmaps/2x2_s1_Lava_room.png)
+![2x2_s1 - Lava room](/woodland_mansion/no_chances/2x2_s1_Lava_room.png)

@@ -16,5 +16,12 @@
       <guid>https://docs.goett.top/posts/woodland_mansion_full/</guid>
       <description>Detaillierte Analyse der Raum-Generierung in Woodland Mansions</description>
     </item>
+    <item>
+      <title>Woodland Mansion Generierung (Ohne Wahrscheinlichkeiten)</title>
+      <link>https://docs.goett.top/posts/woodland_mansion_no_chances/</link>
+      <pubDate>Thu, 09 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/woodland_mansion_no_chances/</guid>
+      <description>Detaillierte Analyse der Raum-Generierung in Woodland Mansions (Ohne Wahrscheinlichkeiten)</description>
+    </item>
   </channel>
 </rss>
