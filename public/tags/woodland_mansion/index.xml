@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Woodland_mansion on Dokumentation</title>
+    <link>https://docs.goett.top/tags/woodland_mansion/</link>
+    <description>Recent content in Woodland_mansion on Dokumentation</description>
+    <generator>Hugo -- 0.147.8</generator>
+    <language>en</language>
+    <copyright>2023 Leon Gött</copyright>
+    <lastBuildDate>Thu, 09 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://docs.goett.top/tags/woodland_mansion/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Woodland Mansion (mit Wahrscheinlichkeiten)</title>
+      <link>https://docs.goett.top/posts/woodland_mansion_full/</link>
+      <pubDate>Thu, 09 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/woodland_mansion_full/</guid>
+      <description>Detaillierter Report zu der Raum-Generierung in Woodland Mansions, inklusive der Wahrscheinlichkeiten</description>
+    </item>
+  </channel>
+</rss>

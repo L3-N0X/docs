@@ -7,8 +7,15 @@
     <generator>Hugo -- 0.147.8</generator>
     <language>en</language>
     <copyright>2023 Leon Gött</copyright>
-    <lastBuildDate>Tue, 02 Dec 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 09 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://docs.goett.top/tags/minecraft/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Woodland Mansion (mit Wahrscheinlichkeiten)</title>
+      <link>https://docs.goett.top/posts/woodland_mansion_full/</link>
+      <pubDate>Thu, 09 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/woodland_mansion_full/</guid>
+      <description>Detaillierter Report zu der Raum-Generierung in Woodland Mansions, inklusive der Wahrscheinlichkeiten</description>
+    </item>
     <item>
       <title>Mounts of Mayhem Summary</title>
       <link>https://docs.goett.top/posts/minecraft-mounts-of-mayhem/</link>
