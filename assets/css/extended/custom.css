@@ -29,3 +29,8 @@
   white-space: pre;
   vertical-align: baseline;
 }
+
+.post-content table th,
+.post-content table td {
+  padding: 8px 15px !important; /* Adjust 12px (top/bottom) and 18px (left/right) to your liking */
+}

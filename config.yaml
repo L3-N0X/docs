@@ -1,6 +1,6 @@
 baseURL: "https://docs.goett.top/"
 title: "Dokumentation"
-copyright: "© 2023 Leon Gött"
+copyright: "© 2026 Leon Gött"
 theme: ["hugo-admonitions", "PaperMod"]
 
 enableInlineShortcodes: true
