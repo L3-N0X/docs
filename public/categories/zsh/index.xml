@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Zsh on Dokumentation</title>
+    <link>https://docs.goett.top/categories/zsh/</link>
+    <description>Recent content in Zsh on Dokumentation</description>
+    <generator>Hugo -- 0.147.8</generator>
+    <language>en</language>
+    <copyright>2026 Leon Gött</copyright>
+    <lastBuildDate>Mon, 20 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://docs.goett.top/categories/zsh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Best CLI Setup</title>
+      <link>https://docs.goett.top/posts/best-cli-tools/</link>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/posts/best-cli-tools/</guid>
+      <description>The best ZSH setup for a powerful and efficient command-line experience, including plugins, themes, and configuration tips.</description>
+    </item>
+  </channel>
+</rss>

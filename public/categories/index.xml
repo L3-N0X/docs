@@ -10,6 +10,13 @@
     <lastBuildDate>Mon, 20 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://docs.goett.top/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Cli</title>
+      <link>https://docs.goett.top/categories/cli/</link>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/categories/cli/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Nas</title>
       <link>https://docs.goett.top/categories/nas/</link>
       <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
@@ -21,6 +28,13 @@
       <link>https://docs.goett.top/categories/vergleich/</link>
       <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
       <guid>https://docs.goett.top/categories/vergleich/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Zsh</title>
+      <link>https://docs.goett.top/categories/zsh/</link>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://docs.goett.top/categories/zsh/</guid>
       <description></description>
     </item>
     <item>
